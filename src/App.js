@@ -1,9 +1,43 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [buttonColor, setButtonColor] = useState('red');
+
+  const newButtonColor = buttonColor === 'red' ? 'blue' : 'red';
+
+  // const handleChangeButtonColor = () => {
+  //   buttonColor === 'red' ? setButtonColor('blue') : setButtonColor('red');
+  // };
+
   return (
-    <div className="App">
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        minHeight: '24em',
+        justifyContent: 'center',
+      }}
+    >
+      <button
+        onClick={() => setButtonColor(newButtonColor)}
+        style={{
+          maxWidth: '50%',
+          backgroundColor: buttonColor === 'red' ? 'red' : 'blue',
+          color: buttonColor === 'red' ? 'black' : 'white',
+        }}
+      >
+        Change to {newButtonColor}
+      </button>
+    </div>
+  );
+}
+
+export default App;
+
+// eslint-disable-next-line no-lone-blocks
+{
+  /* <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -18,8 +52,5 @@ function App() {
           Learn React
         </a>
       </header>
-    </div>
-  );
+    </div> */
 }
-
-export default App;
