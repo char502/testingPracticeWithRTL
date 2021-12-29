@@ -29,7 +29,8 @@ function App() {
       </button>
       <input
         type='checkbox'
-        label='disable/enable button'
+        id='disable/enable button'
+        /* IDs are good when you plan on doing some sort of client-side work on the element, as an element that has an ID can easily and quickly be retrieved by Javascript. It is also good when you are using <label> elements, as you can then use the for attribute (which takes an ID) to point to the field. */
         defaultChecked={disabled}
         aria-checked={disabled}
         /* onChange={() => {
@@ -39,6 +40,7 @@ function App() {
           setDisabled(e.target.checked);
         }}
       />
+      <label htmlFor='disable/enable button'>Disable Button</label>
     </div>
   );
 }
