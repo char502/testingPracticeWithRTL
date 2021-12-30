@@ -20,8 +20,8 @@ function App() {
         onClick={() => setButtonColor(newButtonColor)}
         style={{
           maxWidth: '50%',
-          backgroundColor: buttonColor === 'red' ? 'red' : 'blue',
-          color: buttonColor === 'red' ? 'black' : 'white',
+          backgroundColor: disabled ? 'gray' : buttonColor,
+          color: 'white',
         }}
         disabled={disabled}
       >
@@ -33,12 +33,12 @@ function App() {
         /* IDs are good when you plan on doing some sort of client-side work on the element, as an element that has an ID can easily and quickly be retrieved by Javascript. It is also good when you are using <label> elements, as you can then use the for attribute (which takes an ID) to point to the field. */
         defaultChecked={disabled}
         aria-checked={disabled}
-        /* onChange={() => {
-          setDisabled(!disabled);
-        }} */
-        onChange={e => {
-          setDisabled(e.target.checked);
+        onChange={() => {
+          setDisabled(disabled => !disabled);
         }}
+        /* onChange={e => {
+          setDisabled(e.target.checked);
+        }} */
       />
       <label htmlFor='disable/enable button'>Disable Button</label>
     </div>

@@ -73,6 +73,48 @@ test('button is re-enabled on second click', () => {
   expect(colorButton).toBeEnabled();
 });
 
+test('button turns gray when disabled, red when re-enabled', () => {
+  render(<App />);
+
+  const colorButton = screen.getByRole('button', { name: 'Change to blue' });
+  const checkButton = screen.getByRole('checkbox', {
+    label: 'disable/enable button',
+  });
+
+  // check then uncheck the checkbox
+  fireEvent.click(checkButton);
+
+  expect(checkButton).toBeChecked();
+  expect(colorButton).toHaveStyle({ backgroundColor: 'gray' });
+
+  fireEvent.click(checkButton);
+
+  expect(checkButton).not.toBeChecked();
+  expect(colorButton).toHaveStyle({ backgroundColor: 'red' });
+});
+
+test('change the button color then disable/re-enable', () => {
+  render(<App />);
+
+  const colorButton = screen.getByRole('button', { name: 'Change to blue' });
+  const checkButton = screen.getByRole('checkbox', {
+    label: 'disable/enable button',
+  });
+
+  fireEvent.click(colorButton);
+  expect(colorButton).toHaveStyle({ backgroundColor: 'blue' });
+
+  fireEvent.click(checkButton);
+
+  expect(checkButton).toBeChecked();
+  expect(colorButton).toHaveStyle({ backgroundColor: 'gray' });
+
+  fireEvent.click(checkButton);
+
+  expect(checkButton).not.toBeChecked();
+  expect(colorButton).toHaveStyle({ backgroundColor: 'blue' });
+});
+
 // ===========================
 // test for section 1
 // ===========================
